@@ -189,7 +189,9 @@ class VideoCombine:
             file_path = os.path.join(full_output_folder, file)
             dimensions = f"{frames[0].width}x{frames[0].height}"
             metadata_args = ["-metadata", "comment=" + json.dumps(video_metadata)]
-            args = [ffmpeg_path, "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24",
+
+            in_pix = "rgba" if format_ext == 'trans' else "rgb24"
+            args = [ffmpeg_path, "-v", "error", "-f", "rawvideo", "-pix_fmt", in_pix,
                     "-s", dimensions, "-r", str(frame_rate), "-i", "-", "-crf", str(crf) ] \
                     + video_format['main_pass']
             # On linux, max arg length is Pagesize * 32 -> 131072
