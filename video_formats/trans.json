@@ -1,8 +1,10 @@
 {
     "main_pass":
     [
-        "-n", "-c:v", "libvpx-vp9",
-        "-pix_fmt", "yuva420p"
+        "-n", "-c:v", "prores_ks",
+        "-profile:v", "4", 
+        "-pix_fmt", "yuva444p10le",
+        "-vf", "scale=512:512"
     ],
-     "extension": "webm"
+     "extension": "mov"
 }
